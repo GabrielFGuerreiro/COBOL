@@ -1,0 +1,26 @@
+       IDENTIFICATION DIVISION.
+       AUTHOR. GABRIEL.
+       PROGRAM-ID. EX8.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 PESSOAS.
+           03 NOMES    PIC X(30) OCCURS 3.
+           03 IDADES   PIC 9(2) OCCURS 3.
+       01 CONT         PIC 9(1).
+
+       PROCEDURE DIVISION.
+           PERFORM VARYING CONT FROM 1 BY 1 UNTIL CONT > 3
+               DISPLAY "DIGITE O NOME DA PESSOA " CONT
+               ACCEPT NOMES(CONT)
+
+               DISPLAY "DIGITE A IDADE DA PESSOA " CONT
+               ACCEPT IDADES(CONT)
+           END-PERFORM.
+
+           PERFORM VARYING CONT FROM 1 BY 1 UNTIL CONT > 3
+               DISPLAY "NOME DA PESSOA " CONT ": " NOMES(CONT)
+               DISPLAY "IDADE DA PESSOA " CONT ": " IDADES(CONT)
+               DISPLAY SPACES
+           END-PERFORM.
+            STOP RUN.
+       END PROGRAM EX8.
