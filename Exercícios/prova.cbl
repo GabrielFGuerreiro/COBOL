@@ -1,0 +1,67 @@
+       IDENTIFICATION DIVISION.
+       AUTHOR. GABRIEL.
+       PROGRAM-ID. PROVA.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 MATRIZ.
+           03 NUMEROS      PIC 9(10)V(01) OCCURS 6.
+       01 RESULT           PIC 9(10) VALUE ZEROS.
+       01 RESTO            PIC 9(10) VALUE ZEROS.
+       01 NUM              PIC 9(10) VALUE ZEROS.
+       01 CONT             PIC 9(01) VALUE 2.
+       01 OPCAO            PIC X(1) VALUE "S".
+       PROCEDURE DIVISION.
+       PERFORM UNTIL OPCAO = "N"
+
+           DISPLAY "DIGITE UM NUMERO"
+           ACCEPT NUMEROS(1)
+
+           COMPUTE  NUM = NUMEROS(1)
+      
+           PERFORM UNTIL CONT > 6
+               ADD 1 TO NUM
+               DIVIDE NUM BY 2 GIVING RESULT REMAINDER RESTO
+               IF RESTO = 0
+                   COMPUTE NUMEROS(CONT) = NUM
+                   ADD 1 TO CONT
+               END-IF
+           END-PERFORM
+
+           DISPLAY "LISTA EM ORDEM CRESCENTE"
+           PERFORM VARYING CONT FROM  1 BY 1 UNTIL CONT > 6
+               DISPLAY NUMEROS(CONT)
+           END-PERFORM
+
+           DISPLAY "LISTA EM ORDEM DECRESCENTE"
+           PERFORM VARYING CONT FROM  6 BY -1 UNTIL CONT < 1
+               DISPLAY NUMEROS(CONT)
+           END-PERFORM
+
+           MOVE ZEROS TO RESULT
+           DISPLAY "SOMA"
+           PERFORM VARYING CONT FROM  1 BY 1 UNTIL CONT > 6
+               COMPUTE RESULT = RESULT + NUMEROS(CONT)
+           END-PERFORM
+           DISPLAY RESULT
+
+           DISPLAY "SUBTRACAO 5-3-1"
+           COMPUTE RESULT = NUMEROS(5)
+           COMPUTE RESULT = RESULT - NUMEROS(3)
+           COMPUTE RESULT = RESULT - NUMEROS(1)
+           DISPLAY RESULT
+
+           DISPLAY "MULTIPLICACAO"
+      
+           MOVE 1 TO RESULT
+           PERFORM VARYING CONT FROM 1 BY 1 UNTIL CONT > 6
+               COMPUTE RESULT = RESULT * NUMEROS(CONT)
+           END-PERFORM
+           DISPLAY RESULT
+
+
+           DISPLAY "DESEJA RECOMECAR(S\N)?"
+           ACCEPT OPCAO
+
+       END-PERFORM.
+       STOP RUN.
+       END PROGRAM PROVA.
